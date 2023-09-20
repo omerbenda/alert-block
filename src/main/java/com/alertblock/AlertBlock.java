@@ -1,6 +1,9 @@
 package com.alertblock;
 
+import com.alertblock.block.ModBlocks;
+import com.alertblock.item.ModItems;
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -20,6 +23,8 @@ public class AlertBlock {
 
   public AlertBlock() {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    ModItems.register(modEventBus);
+    ModBlocks.register(modEventBus);
     modEventBus.addListener(this::commonSetup);
     MinecraftForge.EVENT_BUS.register(this);
     modEventBus.addListener(this::addCreative);
@@ -27,7 +32,11 @@ public class AlertBlock {
 
   private void commonSetup(final FMLCommonSetupEvent event) {}
 
-  private void addCreative(BuildCreativeModeTabContentsEvent event) {}
+  private void addCreative(BuildCreativeModeTabContentsEvent event) {
+    if (event.getTabKey().equals(CreativeModeTabs.REDSTONE_BLOCKS)) {
+      event.accept(ModBlocks.POWERED_ALERT_BLOCK);
+    }
+  }
 
   @SubscribeEvent
   public void onServerStarting(ServerStartingEvent event) {}
