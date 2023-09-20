@@ -54,13 +54,15 @@ public class PoweredAlertBlock extends Block {
     if (isSignaled && !triggered) {
       pLevel.scheduleTick(pPos, this, 4);
       pLevel.setBlock(pPos, pState.setValue(TRIGGERED, true), 4);
-      alert();
+      alert(pPos);
     } else if (!isSignaled && triggered) {
       pLevel.setBlock(pPos, pState.setValue(TRIGGERED, false), 4);
     }
   }
 
-  private void alert() {
-    placer.sendSystemMessage(Component.translatable("system.alert.powered"));
+  private void alert(BlockPos pos) {
+    placer.sendSystemMessage(
+        Component.translatable("system.alert.powered")
+            .append("\nXYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ()));
   }
 }
