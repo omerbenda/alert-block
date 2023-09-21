@@ -1,6 +1,7 @@
 package com.alertblock.block.custom;
 
-import com.alertblock.blockentity.custom.AlertBlockEntity;
+import com.alertblock.blockentity.ModBlockEntities;
+import com.alertblock.blockentity.custom.ProximityAlertBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +20,11 @@ public class ProximityAlertBlock extends AlertBlock {
     super(pProperties);
   }
 
+  @Override
+  public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    return ModBlockEntities.PROXIMITY_ALERT_BLOCK_ENTITY.get().create(pPos, pState);
+  }
+
   @Nullable
   @Override
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
@@ -26,18 +32,20 @@ public class ProximityAlertBlock extends AlertBlock {
     return pLevel.isClientSide()
         ? null
         : (level, pos, state, blockEntity) -> {
-          if (blockEntity instanceof AlertBlockEntity alertBlockEntity) {
-            Player nearest = nearestPlayerInRadius(level, pos);
+          if (blockEntity instanceof ProximityAlertBlockEntity proxAlertBlockEntity && proxAlertBlockEntity.doSubscribersExists()) {
+            Player nearest =
+                level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), RADIUS, false);
 
             if (nearest != null) {
-              alertBlockEntity.alert(getAlertComponent(pos, nearest));
+              if (!nearest.getUUID().equals(proxAlertBlockEntity.lastCalled())) {
+                proxAlertBlockEntity.setLastCalled(nearest.getUUID());
+                proxAlertBlockEntity.alert(getAlertComponent(pos, nearest));
+              }
+            } else {
+              proxAlertBlockEntity.setLastCalled(null);
             }
           }
         };
-  }
-
-  private Player nearestPlayerInRadius(Level level, BlockPos pos) {
-    return level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), RADIUS, false);
   }
 
   Component getAlertComponent(BlockPos pos, Player player) {

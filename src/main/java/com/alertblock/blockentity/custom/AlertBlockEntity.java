@@ -11,14 +11,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 public class AlertBlockEntity extends BlockEntity {
-  private final List<UUID> subscribers;
+  protected final List<UUID> subscribers;
 
   public AlertBlockEntity(BlockPos pPos, BlockState pBlockState) {
     super(ModBlockEntities.ALERT_BLOCK_ENTITY.get(), pPos, pBlockState);
+    this.subscribers = new ArrayList<>();
+  }
+
+  public AlertBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+    super(pType, pPos, pBlockState);
     this.subscribers = new ArrayList<>();
   }
 
@@ -43,17 +49,25 @@ public class AlertBlockEntity extends BlockEntity {
     }
   }
 
-  public void subscribePlayer(Player pPlayer) {
+  public boolean subscribePlayer(Player pPlayer) {
     UUID playerUUID = pPlayer.getUUID();
     int index = subscribers.indexOf(playerUUID);
 
     if (index == -1) {
       subscribers.add(playerUUID);
       pPlayer.sendSystemMessage(Component.translatable("system.alert.subscribed"));
-    } else {
-      subscribers.remove(index);
-      pPlayer.sendSystemMessage(Component.translatable("system.alert.unsubscribed"));
+
+      return true;
     }
+
+    subscribers.remove(index);
+    pPlayer.sendSystemMessage(Component.translatable("system.alert.unsubscribed"));
+
+    return false;
+  }
+
+  public boolean doSubscribersExists() {
+    return !subscribers.isEmpty();
   }
 
   public void alert(Component alertComponent) {
