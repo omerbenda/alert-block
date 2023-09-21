@@ -1,6 +1,7 @@
 package com.alertblock.blockentity;
 
 import com.alertblock.AlertBlock;
+import com.alertblock.block.ModBlocks;
 import com.alertblock.blockentity.custom.AlertBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,7 +17,7 @@ public class ModBlockEntities {
       BLOCK_ENTITIES.register(
           "alert_block_entity",
           () ->
-              BlockEntityType.Builder.of(AlertBlockEntity::new)
+              BlockEntityType.Builder.of(AlertBlockEntity::new, ModBlocks.PROXIMITY_ALERT_BLOCK.get())
                   .build(null));
 
   public static void register(IEventBus eventBus) {

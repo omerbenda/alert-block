@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -58,7 +57,7 @@ public class AlertBlockEntity extends BlockEntity {
   }
 
   public void alert(Component alertComponent) {
-    PlayerList playerList = Minecraft.getInstance().getSingleplayerServer().getPlayerList();
+    PlayerList playerList = level.getServer().getPlayerList();
 
     subscribers.forEach(
         subscriberId -> {

@@ -37,6 +37,7 @@ public class AlertBlock {
   private void addCreative(BuildCreativeModeTabContentsEvent event) {
     if (event.getTabKey().equals(CreativeModeTabs.REDSTONE_BLOCKS)) {
       event.accept(ModBlocks.POWERED_ALERT_BLOCK);
+      event.accept(ModBlocks.PROXIMITY_ALERT_BLOCK);
     }
   }
 
