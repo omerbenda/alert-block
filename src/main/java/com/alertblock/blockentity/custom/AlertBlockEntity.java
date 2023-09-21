@@ -57,7 +57,7 @@ public class AlertBlockEntity extends BlockEntity {
     }
   }
 
-  public void alert(BlockPos pos) {
+  public void alert(Component alertComponent) {
     PlayerList playerList = Minecraft.getInstance().getSingleplayerServer().getPlayerList();
 
     subscribers.forEach(
@@ -65,9 +65,7 @@ public class AlertBlockEntity extends BlockEntity {
           Player subscriber = playerList.getPlayer(subscriberId);
 
           if (subscriber != null) {
-            subscriber.sendSystemMessage(
-                Component.translatable("system.alert.powered")
-                    .append("\nXYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ()));
+            subscriber.sendSystemMessage(alertComponent);
           }
         });
   }
