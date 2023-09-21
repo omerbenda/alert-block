@@ -1,6 +1,7 @@
 package com.alertblock;
 
 import com.alertblock.block.ModBlocks;
+import com.alertblock.blockentity.ModBlockEntities;
 import com.alertblock.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -25,6 +26,7 @@ public class AlertBlock {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     ModItems.register(modEventBus);
     ModBlocks.register(modEventBus);
+    ModBlockEntities.register(modEventBus);
     modEventBus.addListener(this::commonSetup);
     MinecraftForge.EVENT_BUS.register(this);
     modEventBus.addListener(this::addCreative);

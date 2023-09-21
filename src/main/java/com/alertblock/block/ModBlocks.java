@@ -19,7 +19,7 @@ public class ModBlocks {
   public static final DeferredRegister<Block> BLOCKS =
       DeferredRegister.create(ForgeRegistries.BLOCKS, AlertBlock.MOD_ID);
 
-  public static final RegistryObject<Block> POWERED_ALERT_BLOCK =
+  public static final RegistryObject<PoweredAlertBlock> POWERED_ALERT_BLOCK =
       registerBlock(
           "powered_alert_block",
           () ->
