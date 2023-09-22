@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class ProximityAlertBlock extends AlertBlock {
-  private static final float RADIUS = 10;
+  private static final float RADIUS = 5;
 
   public ProximityAlertBlock(Properties pProperties) {
     super(pProperties);
@@ -50,7 +50,7 @@ public class ProximityAlertBlock extends AlertBlock {
 
   Component getAlertComponent(BlockPos pos, Player player) {
     Vec3 playerPos = player.position();
-    return Component.translatable("system.alert.powered")
+    return Component.translatable("system.alert.proximity")
         .append("\nXYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ())
         .append(
             "\nby: "

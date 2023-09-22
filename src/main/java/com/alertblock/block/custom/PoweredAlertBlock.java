@@ -35,12 +35,12 @@ public class PoweredAlertBlock extends AlertBlock {
 
     if (isSignaled && !triggered) {
       pLevel.scheduleTick(pPos, this, 4);
-      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, true), 4);
+      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, true), 2);
       if (pLevel.getBlockEntity(pPos) instanceof AlertBlockEntity alertEntity) {
         alertEntity.alert(getAlertComponent(pPos));
       }
     } else if (!isSignaled && triggered) {
-      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, false), 4);
+      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, false), 2);
     }
   }
 
