@@ -2,6 +2,8 @@
   "block.alertblock.powered_alert_block": "Powered Alert Block",
   "block.alertblock.proximity_alert_block": "Proximity Alert Block",
 
+  "system.alert.subscribe": "You have subscribed to the alert block",
+  "system.alert.unsubscribe": "You have unsubscribed from the alert block",
   "system.alert.powered": "Your powered alert block has been triggered at position",
   "system.alert.proximity": "Your proximity alert block has been triggered at position"
 }
