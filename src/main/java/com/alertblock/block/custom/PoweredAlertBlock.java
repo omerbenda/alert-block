@@ -5,13 +5,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-public class PoweredAlertBlock extends AlertBlock implements EntityBlock {
+public class PoweredAlertBlock extends AlertBlock {
   public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
 
   public PoweredAlertBlock(Properties pProperties) {
@@ -36,12 +35,12 @@ public class PoweredAlertBlock extends AlertBlock implements EntityBlock {
 
     if (isSignaled && !triggered) {
       pLevel.scheduleTick(pPos, this, 4);
-      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, true), 4);
+      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, true), 2);
       if (pLevel.getBlockEntity(pPos) instanceof AlertBlockEntity alertEntity) {
         alertEntity.alert(getAlertComponent(pPos));
       }
     } else if (!isSignaled && triggered) {
-      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, false), 4);
+      pLevel.setBlock(pPos, pState.setValue(TRIGGERED, false), 2);
     }
   }
 

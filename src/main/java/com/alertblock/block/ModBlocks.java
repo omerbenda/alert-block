@@ -2,6 +2,7 @@ package com.alertblock.block;
 
 import com.alertblock.AlertBlock;
 import com.alertblock.block.custom.PoweredAlertBlock;
+import com.alertblock.block.custom.ProximityAlertBlock;
 import com.alertblock.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -27,6 +28,15 @@ public class ModBlocks {
                   BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
                       .strength(6f)
                       .requiresCorrectToolForDrops()));
+
+  public static final RegistryObject<ProximityAlertBlock> PROXIMITY_ALERT_BLOCK =
+          registerBlock(
+                  "proximity_alert_block",
+                  () ->
+                          new ProximityAlertBlock(
+                                  BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+                                          .strength(6f)
+                                          .requiresCorrectToolForDrops()));
 
   private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
     RegistryObject<T> toReturn = BLOCKS.register(name, block);
