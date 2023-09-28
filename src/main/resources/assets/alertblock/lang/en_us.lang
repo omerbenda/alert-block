@@ -4,3 +4,4 @@ tile.proximity_alert_block.name=Proximity Alert Block
 
 alertblock.alert.subscribed=Subscribed to Alert Block
 alertblock.alert.unsubscribed=Unsubscribed to Alert Block
+alertblock.alert.proximity=A player has triggered your proximity alert block

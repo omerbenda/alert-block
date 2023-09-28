@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class AlertTileEntity extends TileEntity {
-  private final List<UUID> subscriberList;
+  protected final List<UUID> subscriberList;
 
   public AlertTileEntity() {
     this.subscriberList = new ArrayList<>();
@@ -57,5 +58,17 @@ public class AlertTileEntity extends TileEntity {
     player.sendMessage(new TextComponentTranslation("alertblock.alert.unsubscribed"));
 
     return false;
+  }
+
+  public void alert(ITextComponent alertComponent) {
+    for (UUID id : subscriberList) {
+      this.world
+          .getPlayers(EntityPlayer.class, player -> player.getUniqueID().equals(id))
+          .forEach(player -> player.sendMessage(alertComponent));
+    }
+  }
+
+  public boolean isEmpty() {
+    return this.subscriberList.isEmpty();
   }
 }
