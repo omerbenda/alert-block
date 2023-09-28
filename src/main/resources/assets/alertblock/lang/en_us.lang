@@ -1,0 +1,6 @@
+
+tile.powered_alert_block.name=Powered Alert Block
+tile.proximity_alert_block.name=Proximity Alert Block
+
+alertblock.alert.subscribed=Subscribed to Alert Block
+alertblock.alert.unsubscribed=Unsubscribed to Alert Block

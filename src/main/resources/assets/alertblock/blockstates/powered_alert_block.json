@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "normal": { "model": "alertblock:powered_alert_block" }
+  }
+}

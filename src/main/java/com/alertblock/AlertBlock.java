@@ -22,6 +22,7 @@ public class AlertBlock {
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
     logger = event.getModLog();
+    proxy.registerTileEntity();
   }
 
   @EventHandler
