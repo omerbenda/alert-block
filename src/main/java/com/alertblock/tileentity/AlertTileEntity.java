@@ -1,12 +1,16 @@
 package com.alertblock.tileentity;
 
+import com.alertblock.block.AlertBlock;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,11 @@ public class AlertTileEntity extends TileEntity {
 
   public AlertTileEntity() {
     this.subscriberList = new ArrayList<>();
+  }
+
+  @Override
+  public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+    return !(oldState.getBlock() instanceof AlertBlock);
   }
 
   @Override
