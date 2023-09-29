@@ -1,0 +1,26 @@
+{
+  "group": "alertblock",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IOI",
+    "rEr",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "alertblock:proximity_alert_block"
+  }
+}
