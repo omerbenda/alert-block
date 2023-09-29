@@ -55,13 +55,13 @@ public class AlertBlockEntity extends BlockEntity {
 
     if (index == -1) {
       subscribers.add(playerUUID);
-      pPlayer.sendSystemMessage(Component.translatable("system.alert.subscribe"));
+      pPlayer.sendSystemMessage(Component.translatable("alertblock.action.subscribe"));
 
       return true;
     }
 
     subscribers.remove(index);
-    pPlayer.sendSystemMessage(Component.translatable("system.alert.unsubscribe"));
+    pPlayer.sendSystemMessage(Component.translatable("alertblock.action.unsubscribe"));
 
     return false;
   }

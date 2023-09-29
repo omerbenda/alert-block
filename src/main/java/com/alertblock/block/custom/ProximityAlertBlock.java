@@ -50,7 +50,7 @@ public class ProximityAlertBlock extends AlertBlock {
 
   Component getAlertComponent(BlockPos pos, Player player) {
     Vec3 playerPos = player.position();
-    return Component.translatable("system.alert.proximity")
+    return Component.translatable("alertblock.alert.proximity")
         .append("\nXYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ())
         .append(
             "\nby: "
