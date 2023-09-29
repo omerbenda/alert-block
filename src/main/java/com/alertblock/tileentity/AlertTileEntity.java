@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -52,9 +54,25 @@ public class AlertTileEntity extends TileEntity {
     }
   }
 
+  @Override
+  public SPacketUpdateTileEntity getUpdatePacket(){
+    NBTTagCompound nbtTag = new NBTTagCompound();
+
+    writeToNBT(nbtTag);
+
+    return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
+  }
+
+  @Override
+  public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt){
+    NBTTagCompound tag = pkt.getNbtCompound();
+    readFromNBT(tag);
+  }
+
   public boolean subscribePlayer(EntityPlayer player) {
     UUID playerId = player.getUniqueID();
     int index = subscriberList.indexOf(playerId);
+    this.markDirty();
 
     if (index == -1) {
       this.subscriberList.add(player.getUniqueID());

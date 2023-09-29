@@ -84,7 +84,7 @@ public class PoweredAlertBlock extends AlertBlock {
   private void alert(World world, BlockPos pos) {
     TileEntity tileEntity = world.getTileEntity(pos);
 
-    if (tileEntity instanceof AlertTileEntity) {
+    if (tileEntity instanceof AlertTileEntity && !((AlertTileEntity) tileEntity).isEmpty()) {
       ((AlertTileEntity) tileEntity)
           .alert(
               new TextComponentTranslation("alertblock.alert.powered")
