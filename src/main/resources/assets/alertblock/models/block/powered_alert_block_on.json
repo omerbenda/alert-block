@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "alertblock:blocks/powered_alert_block_side_on",
+    "up": "alertblock:blocks/powered_alert_block_top",
+    "down": "alertblock:blocks/powered_alert_block_bottom",
+    "north": "alertblock:blocks/powered_alert_block_side_on",
+    "west": "alertblock:blocks/powered_alert_block_side_on",
+    "east": "alertblock:blocks/powered_alert_block_side_on",
+    "south": "alertblock:blocks/powered_alert_block_side_on"
+  }
+}
