@@ -45,7 +45,7 @@ public class PoweredAlertBlock extends AlertBlock {
   }
 
   Component getAlertComponent(BlockPos pos) {
-    return Component.translatable("system.alert.powered")
+    return Component.translatable("alertblock.alert.powered")
         .append("\nXYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ());
   }
 }
