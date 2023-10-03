@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -55,13 +56,13 @@ public class AlertBlockEntity extends BlockEntity {
 
     if (index == -1) {
       subscribers.add(playerUUID);
-      pPlayer.sendSystemMessage(Component.translatable("system.alert.subscribe"));
+      pPlayer.sendSystemMessage(Component.translatable("system.alert.subscribe").withStyle(ChatFormatting.YELLOW));
 
       return true;
     }
 
     subscribers.remove(index);
-    pPlayer.sendSystemMessage(Component.translatable("system.alert.unsubscribe"));
+    pPlayer.sendSystemMessage(Component.translatable("system.alert.unsubscribe").withStyle(ChatFormatting.YELLOW));
 
     return false;
   }
@@ -72,13 +73,14 @@ public class AlertBlockEntity extends BlockEntity {
 
   public void alert(Component alertComponent) {
     PlayerList playerList = level.getServer().getPlayerList();
+    Component stylizedComponent = Component.empty().append(alertComponent).withStyle(ChatFormatting.RED);
 
     subscribers.forEach(
         subscriberId -> {
           Player subscriber = playerList.getPlayer(subscriberId);
 
           if (subscriber != null) {
-            subscriber.sendSystemMessage(alertComponent);
+            subscriber.sendSystemMessage(stylizedComponent);
           }
         });
   }
