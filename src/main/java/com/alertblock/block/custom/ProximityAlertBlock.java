@@ -32,7 +32,8 @@ public class ProximityAlertBlock extends AlertBlock {
     return pLevel.isClientSide()
         ? null
         : (level, pos, state, blockEntity) -> {
-          if (blockEntity instanceof ProximityAlertBlockEntity proxAlertBlockEntity && proxAlertBlockEntity.doSubscribersExists()) {
+          if (blockEntity instanceof ProximityAlertBlockEntity proxAlertBlockEntity
+              && proxAlertBlockEntity.doSubscribersExists()) {
             Player nearest =
                 level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), RADIUS, false);
 
@@ -56,10 +57,10 @@ public class ProximityAlertBlock extends AlertBlock {
             "\nby: "
                 + player.getName().getString()
                 + " at XYZ: "
-                + playerPos.x()
+                + String.format("%.2f", playerPos.x())
                 + " / "
-                + playerPos.y()
+                + String.format("%.2f", playerPos.y())
                 + " / "
-                + playerPos.z());
+                + String.format("%.2f", playerPos.z()));
   }
 }
