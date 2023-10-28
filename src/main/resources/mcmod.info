@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "alertblock",
+    "name": "Alert Block",
+    "description": "A mod for alerting you of someone's presence",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["omerbenda"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
