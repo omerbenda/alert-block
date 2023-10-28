@@ -1,6 +1,6 @@
 package com.alertblock.block;
 
-import com.alertblock.AlertBlock;
+import com.alertblock.AlertBlockMod;
 import com.alertblock.init.BlockInit;
 import com.alertblock.init.ItemInit;
 import com.alertblock.util.IHasModel;
@@ -22,6 +22,6 @@ public class BlockBase extends Block implements IHasModel {
 
   @Override
   public void registerModels() {
-    AlertBlock.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
+    AlertBlockMod.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
   }
 }

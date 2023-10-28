@@ -11,10 +11,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
-public class AlertBlock {
+public class AlertBlockMod {
 
   public static Logger logger;
-  @Mod.Instance public static AlertBlock instance;
+  @Mod.Instance public static AlertBlockMod instance;
 
   @SidedProxy(clientSide = Reference.CLIENT, serverSide = Reference.COMMON)
   public static CommonProxy proxy;
