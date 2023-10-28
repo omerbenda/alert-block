@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "alertblock:blocks/proximity_alert_block"
-  }
-}

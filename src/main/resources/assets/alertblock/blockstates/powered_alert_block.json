@@ -1,6 +1,0 @@
-{
-  "variants": {
-    "triggered=false": { "model": "alertblock:powered_alert_block_off" },
-    "triggered=true": { "model": "alertblock:powered_alert_block_on" }
-  }
-}
