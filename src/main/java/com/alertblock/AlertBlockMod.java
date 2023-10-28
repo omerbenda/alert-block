@@ -17,12 +17,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-@Mod(AlertBlock.MOD_ID)
-public class AlertBlock {
+@Mod(AlertBlockMod.MOD_ID)
+public class AlertBlockMod {
   public static final String MOD_ID = "alertblock";
   public static final Logger LOGGER = LogUtils.getLogger();
 
-  public AlertBlock() {
+  public AlertBlockMod() {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
     ModItems.register(modEventBus);
     ModBlocks.register(modEventBus);
