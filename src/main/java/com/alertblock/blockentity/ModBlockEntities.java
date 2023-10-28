@@ -1,6 +1,6 @@
 package com.alertblock.blockentity;
 
-import com.alertblock.AlertBlock;
+import com.alertblock.AlertBlockMod;
 import com.alertblock.block.ModBlocks;
 import com.alertblock.blockentity.custom.AlertBlockEntity;
 import com.alertblock.blockentity.custom.ProximityAlertBlockEntity;
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockEntities {
   public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
-      DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, AlertBlock.MOD_ID);
+      DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, AlertBlockMod.MOD_ID);
 
   public static final RegistryObject<BlockEntityType<AlertBlockEntity>> ALERT_BLOCK_ENTITY =
       BLOCK_ENTITIES.register(

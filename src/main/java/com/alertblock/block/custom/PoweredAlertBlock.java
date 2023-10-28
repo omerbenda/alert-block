@@ -23,6 +23,7 @@ public class PoweredAlertBlock extends AlertBlock {
     pBuilder.add(TRIGGERED);
   }
 
+  @Override
   public void neighborChanged(
       BlockState pState,
       Level pLevel,

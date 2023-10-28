@@ -1,6 +1,6 @@
 package com.alertblock.block;
 
-import com.alertblock.AlertBlock;
+import com.alertblock.AlertBlockMod;
 import com.alertblock.block.custom.PoweredAlertBlock;
 import com.alertblock.block.custom.ProximityAlertBlock;
 import com.alertblock.item.ModItems;
@@ -18,7 +18,7 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
   public static final DeferredRegister<Block> BLOCKS =
-      DeferredRegister.create(ForgeRegistries.BLOCKS, AlertBlock.MOD_ID);
+      DeferredRegister.create(ForgeRegistries.BLOCKS, AlertBlockMod.MOD_ID);
 
   public static final RegistryObject<PoweredAlertBlock> POWERED_ALERT_BLOCK =
       registerBlock(
