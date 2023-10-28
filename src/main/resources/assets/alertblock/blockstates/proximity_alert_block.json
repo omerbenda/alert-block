@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "alertblock:block/proximity_alert_block"
+    }
+  }
+}
