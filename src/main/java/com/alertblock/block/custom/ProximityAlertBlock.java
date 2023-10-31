@@ -7,6 +7,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -19,12 +21,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class ProximityAlertBlock extends AlertBlock {
   public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-  private static final float RADIUS = 5;
 
   public ProximityAlertBlock(Properties pProperties) {
     super(pProperties);
@@ -37,7 +39,8 @@ public class ProximityAlertBlock extends AlertBlock {
   }
 
   @Override
-  public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
+  public int getSignal(
+      BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
     return pBlockState.getValue(POWERED) ? 15 : 0;
   }
 
@@ -45,6 +48,7 @@ public class ProximityAlertBlock extends AlertBlock {
   public boolean isSignalSource(BlockState pState) {
     return true;
   }
+
   @Override
   public @Nullable BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
     return ModBlockEntities.PROXIMITY_ALERT_BLOCK_ENTITY.get().create(pPos, pState);
@@ -60,7 +64,8 @@ public class ProximityAlertBlock extends AlertBlock {
           if (blockEntity instanceof ProximityAlertBlockEntity proxAlertBlockEntity
               && proxAlertBlockEntity.doSubscribersExists()) {
             Player nearest =
-                level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), RADIUS, false);
+                level.getNearestPlayer(
+                    pos.getX(), pos.getY(), pos.getZ(), proxAlertBlockEntity.radius, false);
 
             if (nearest != null) {
               if (!nearest.getUUID().equals(proxAlertBlockEntity.lastCalled())) {
@@ -87,6 +92,29 @@ public class ProximityAlertBlock extends AlertBlock {
       pLevel.updateNeighborsAt(pPos, this);
       pLevel.gameEvent(null, GameEvent.BLOCK_DEACTIVATE, pPos);
     }
+  }
+
+  @Override
+  public InteractionResult use(
+      BlockState pState,
+      Level pLevel,
+      BlockPos pPos,
+      Player pPlayer,
+      InteractionHand pHand,
+      BlockHitResult pHit) {
+    if (!pLevel.isClientSide() && pHand.equals(InteractionHand.MAIN_HAND)) {
+      if (pLevel.getBlockEntity(pPos) instanceof ProximityAlertBlockEntity proxAlertEntity) {
+        if (pPlayer.isCrouching()) {
+          int newRadius = proxAlertEntity.shiftRadius();
+          pPlayer.sendSystemMessage(
+              Component.translatable("alertblock.action.radius_shift").append("" + newRadius));
+        } else {
+          proxAlertEntity.subscribePlayer(pPlayer);
+        }
+      }
+    }
+
+    return InteractionResult.SUCCESS;
   }
 
   Component getAlertComponent(BlockPos pos, Player player) {
