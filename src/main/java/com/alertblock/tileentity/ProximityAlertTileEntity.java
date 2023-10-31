@@ -2,7 +2,9 @@ package com.alertblock.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.text.DecimalFormat;
@@ -45,7 +47,8 @@ public class ProximityAlertTileEntity extends AlertTileEntity implements ITickab
                           + " / "
                           + decimalFormat.format(closest.posY)
                           + " / "
-                          + decimalFormat.format(closest.posZ)));
+                          + decimalFormat.format(closest.posZ))
+                  .setStyle(new Style().setColor(TextFormatting.RED)));
         }
       } else {
         lastCalled = null;

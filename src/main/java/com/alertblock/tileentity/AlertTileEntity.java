@@ -11,7 +11,9 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -26,7 +28,8 @@ public class AlertTileEntity extends TileEntity {
   }
 
   @Override
-  public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+  public boolean shouldRefresh(
+      World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
     return !(oldState.getBlock() instanceof AlertBlock);
   }
 
@@ -55,7 +58,7 @@ public class AlertTileEntity extends TileEntity {
   }
 
   @Override
-  public SPacketUpdateTileEntity getUpdatePacket(){
+  public SPacketUpdateTileEntity getUpdatePacket() {
     NBTTagCompound nbtTag = new NBTTagCompound();
 
     writeToNBT(nbtTag);
@@ -64,7 +67,7 @@ public class AlertTileEntity extends TileEntity {
   }
 
   @Override
-  public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt){
+  public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
     NBTTagCompound tag = pkt.getNbtCompound();
     readFromNBT(tag);
   }
@@ -76,13 +79,17 @@ public class AlertTileEntity extends TileEntity {
 
     if (index == -1) {
       this.subscriberList.add(player.getUniqueID());
-      player.sendMessage(new TextComponentTranslation("alertblock.alert.subscribed"));
+      player.sendMessage(
+          new TextComponentTranslation("alertblock.alert.subscribed")
+              .setStyle(new Style().setColor(TextFormatting.YELLOW)));
 
       return true;
     }
 
     this.subscriberList.remove(index);
-    player.sendMessage(new TextComponentTranslation("alertblock.alert.unsubscribed"));
+    player.sendMessage(
+        new TextComponentTranslation("alertblock.alert.unsubscribed")
+            .setStyle(new Style().setColor(TextFormatting.YELLOW)));
 
     return false;
   }
