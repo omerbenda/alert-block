@@ -12,7 +12,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -69,7 +71,7 @@ public class PoweredAlertBlock extends AlertBlock {
 
   @Override
   public void neighborChanged(
-          IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+      IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
     boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.up());
     boolean flag1 = state.getValue(TRIGGERED);
 
@@ -88,7 +90,8 @@ public class PoweredAlertBlock extends AlertBlock {
       ((AlertTileEntity) tileEntity)
           .alert(
               new TextComponentTranslation("alertblock.alert.powered")
-                  .appendText("\nat XYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ()));
+                  .appendText("\nat XYZ: " + pos.getX() + " / " + pos.getY() + " / " + pos.getZ())
+                  .setStyle(new Style().setColor(TextFormatting.RED)));
     }
   }
 }
