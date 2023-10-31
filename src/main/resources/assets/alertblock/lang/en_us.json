@@ -5,5 +5,6 @@
   "alertblock.action.subscribe": "You have subscribed to the alert block",
   "alertblock.action.unsubscribe": "You have unsubscribed from the alert block",
   "alertblock.alert.powered": "Your powered alert block has been triggered at position",
-  "alertblock.alert.proximity": "Your proximity alert block has been triggered at position"
+  "alertblock.alert.proximity": "Your proximity alert block has been triggered at position",
+  "alertblock.action.radius_shift": "Your alert block's radius has changed to "
 }
