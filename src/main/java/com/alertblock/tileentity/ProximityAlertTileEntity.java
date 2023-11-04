@@ -10,6 +10,8 @@ import net.minecraft.world.World;
 import java.text.DecimalFormat;
 import java.util.UUID;
 
+import static com.alertblock.block.ProximityAlertBlock.POWERED;
+
 public class ProximityAlertTileEntity extends AlertTileEntity implements ITickable {
   private static final float RADIUS = 5;
 
@@ -49,6 +51,11 @@ public class ProximityAlertTileEntity extends AlertTileEntity implements ITickab
                           + " / "
                           + decimalFormat.format(closest.posZ))
                   .setStyle(new Style().setColor(TextFormatting.RED)));
+
+          world.setBlockState(
+              this.pos, world.getBlockState(this.pos).withProperty(POWERED, Boolean.TRUE), 3);
+          world.notifyNeighborsOfStateChange(pos, this.getBlockType(), false);
+          world.scheduleUpdate(this.pos, this.getBlockType(), this.getBlockType().tickRate(world));
         }
       } else {
         lastCalled = null;
