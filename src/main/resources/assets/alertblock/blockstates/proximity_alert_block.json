@@ -1,5 +1,6 @@
 {
   "variants": {
-    "normal": { "model": "alertblock:proximity_alert_block" }
+    "powered=false": { "model": "alertblock:proximity_alert_block" },
+    "powered=true": { "model": "alertblock:proximity_alert_block" }
   }
 }
