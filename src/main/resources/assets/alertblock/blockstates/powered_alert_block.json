@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "triggered=false": {
+      "model": "alertblock:block/powered_alert_block_off"
+    },
+    "triggered=true": {
+      "model": "alertblock:block/powered_alert_block_on"
+    }
+  }
+}

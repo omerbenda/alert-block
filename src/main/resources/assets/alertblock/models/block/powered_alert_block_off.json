@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "alertblock:block/powered_alert_block_top",
+    "down": "alertblock:block/powered_alert_block_bottom",
+    "east": "alertblock:block/powered_alert_block_side_off",
+    "west": "alertblock:block/powered_alert_block_side_off",
+    "north": "alertblock:block/powered_alert_block_side_off",
+    "south": "alertblock:block/powered_alert_block_side_off",
+    "particle": "alertblock:block/powered_alert_block_side_off"
+  }
+}
