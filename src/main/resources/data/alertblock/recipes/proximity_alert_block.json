@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "iSi",
+    "iOi",
     "RER",
     "iii"
   ],
@@ -9,8 +9,8 @@
     "i": {
       "item": "minecraft:iron_ingot"
     },
-    "S": {
-      "item": "minecraft:sculk"
+    "O": {
+      "item": "minecraft:obsidian"
     },
     "R": {
       "item": "minecraft:redstone"
